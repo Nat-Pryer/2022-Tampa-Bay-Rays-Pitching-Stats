@@ -21,15 +21,15 @@ Before analyzing the data, it was necessary to clean and organize it. This was d
 The cleaned data was then imported into a SQL environment where various queries were executed to answer specific questions related to the Rays' pitching performance.
 
 ## Results
-The analysis provided valuable insights into the strengths and weaknesses of the Rays' pitching staff during the 2022 season. The SQL queries and their results can be found in the queries.sql file in this repository.
+The analysis provided valuable insights into the strengths and weaknesses of the Rays' pitching roster during the 2022 season.
 
 ## How to Use
 1. Clone the Repository:
-git clone https://github.com/nat-pryer/rays-2022-pitching-analysis.git
+git clone https://github.com/Nat-Pryer/2022-Tampa-Bay-Rays-Pitching-Stats.git
 
 2. Open the SQL File:
-Use your preferred SQL environment to run the queries in the queries.sql file.
+Use your preferred SQL environment to run the queries.
 
 ## Conclusion
-This project demonstrates the power of SQL in analyzing sports data and extracting meaningful insights. The findings from this analysis could be used to inform future strategies for the Tampa Bay Rays' pitching staff.
+This project demonstrates the power of SQL in analyzing sports data and extracting meaningful insights. The findings from this analysis could be used to inform future strategies for the Tampa Bay Rays' coaching staff.
 
