@@ -2,7 +2,7 @@
 This project involves the analysis of the Tampa Bay Rays' pitching statistics from the 2022 MLB season. The analysis was conducted using SQL to answer specific questions about the team's performance.
 
 ## Project Overview
-The goal of this project was to gain insights into the Tampa Bay Rays' pitching performance during the 2022 season by leveraging SQL for data analysis. The process included downloading the relevant data, cleaning it up, and performing SQL queries to extract meaningful information.
+The goal of this project was to gain insights into the Tampa Bay Rays' pitching performance during the 2022 season by using SQL for data analysis. The process included downloading the relevant data, cleaning it up, and performing SQL queries to extract meaningful information.
 
 ## Data Sources
 The data used in this project was sourced from the following websites:
