@@ -187,3 +187,66 @@ SELECT
 	ht.NumofHRs
 FROM HRCountRanks ht
 WHERE NumOfHRsRanking = 1
+
+-- Question 4 Shane McClanahan
+
+-- 4a Average release speed, spin rate, strikeouts, most popular zone ONLY using LastPitchRays
+
+SELECT
+	AVG(release_speed) AvgReleaseSpeed,
+	AVG(release_spin_rate) AvgReleaseSpinRate,
+	SUM(case when events = 'strikeout' then 1 else 0 end) strikeouts,
+	MAX(zones.zone) as Zone
+FROM RaysPitching.dbo.LastPitchRays LPR
+join (
+	SELECT Top 1 pitcher, zone, count(*) zonenum
+	FROM RaysPitching.dbo.LastPitchRays LPR
+	WHERE player_name = 'McClanahan, Shane'
+	group by pitcher, zone
+	order by count(*) desc
+
+) zones on zones.pitcher = LPR.pitcher
+WHERE player_name = 'McClanahan, Shane'
+
+--4b Top pitches for each infield position where total positions are over 5, rank them
+
+SELECT *
+FROM (
+	SELECT pitch_name, count(*) TimesHit, 'Third' Position
+	FROM RaysPitching.dbo.LastPitchRays
+	WHERE hit_location = 5 and player_name = 'McClanahan, Shane'
+	GROUP BY pitch_name
+	UNION
+	SELECT pitch_name, count(*) TimesHit, 'Short' Position
+	FROM RaysPitching.dbo.LastPitchRays
+	WHERE hit_location = 6 and player_name = 'McClanahan, Shane'
+	GROUP BY pitch_name
+	UNION
+	SELECT pitch_name, count(*) TimesHit, 'Second' Position
+	FROM RaysPitching.dbo.LastPitchRays
+	WHERE hit_location = 4 and player_name = 'McClanahan, Shane'
+	GROUP BY pitch_name
+	UNION
+	SELECT pitch_name, count(*) TimesHit, 'First' Position
+	FROM RaysPitching.dbo.LastPitchRays
+	WHERE hit_location = 3 and player_name = 'McClanahan, Shane'
+	GROUP BY pitch_name
+) a
+WHERE TimesHit > 4
+ORDER BY TimesHit desc
+
+--4c Show different balls and strikes as well as frequency when someone is on base
+
+SELECT balls, strikes, count(*) Frequency
+FROM RaysPitching.dbo.LastPitchRays
+WHERE (on_3b is NOT NULL or on_2b is NOT NULL or on_1b is NOT NULL) and player_name = 'McClanahan, Shane'
+GROUP BY balls, strikes
+ORDER BY Frequency desc
+
+--4d Which pitch causes the lowest launch speed?
+
+SELECT TOP 1 pitch_name, avg(launch_speed * 1.00) AvgLaunchSpeed
+FROM RaysPitching.dbo.LastPitchRays
+WHERE player_name = 'McClanahan, Shane'
+GROUP BY pitch_name
+ORDER BY AvgLaunchSpeed asc
